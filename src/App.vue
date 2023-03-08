@@ -34,7 +34,7 @@
     methods: {
       fetchData() {
         this.fetchMovies()
-        // this.fetchSeries()
+        this.fetchSeries()
       },
       fetchMovies() {
         axios.get('https://api.themoviedb.org/3/search/movie',{
@@ -50,9 +50,23 @@
           this.store.movies = []
         })
       }
+    },
+    fetchSeries() {
+        axios.get('https://api.themoviedb.org/3/search/tv',{
+          params: {
+            api_key: this.store.apiKey,
+            query: this.store.search,
+            language: 'it-IT'
+          }
+        }).then(res => {
+          const results = res.data.results
+          this.store.series = results
+        }).catch(() => {
+          this.store.series = []
+        })
+      }
     }
     
-  }
 </script>
 
 <style lang="scss" >
