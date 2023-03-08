@@ -2,7 +2,7 @@
     <li class="result">
       <h2>{{ movie.title }}</h2>
       <h3>{{ movie.original_title }}</h3>
-      <p>{{ movie.language }}</p>
+      <p>{{ movie.original_language }}</p>
       <p>{{ movie.vote_average }}</p>
     </li>
   </template>
@@ -23,5 +23,8 @@
   .result{
     border: 1px solid black;
     padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
   }
   </style>
