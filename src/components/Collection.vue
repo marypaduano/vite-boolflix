@@ -19,4 +19,9 @@
   </script>
   
   <style lang="scss" scoped>
+
+  .result{
+    border: 1px solid black;
+    padding: 10px;
+  }
   </style>
