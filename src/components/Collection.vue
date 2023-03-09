@@ -1,7 +1,7 @@
 <template>
     <li class="result">
-      <h2>{{ movie.title }}</h2>
-      <h3>{{ movie.original_title }}</h3>
+      <h2>{{ movie.title ? movie.title : serie.name}}</h2>
+      <h3>{{ movie.original_title ? movie.original_title : serie.original_name }}</h3>
       <p>{{ movie.original_language }}</p>
       <p>{{ movie.vote_average }}</p>
     </li>
@@ -11,6 +11,10 @@
     export default {
       props: {
         movie: {
+          type: Object,
+          required: true
+        },
+        serie: {
           type: Object,
           required: true
         }
