@@ -2,8 +2,8 @@
     <main>
       <div class="container">
         <ul class="main-content">
-          <Collection v-for="movie in movies" :key="movie.id" :movie="movie" />
-          <Collection v-for="serie in series" :key="serie.id" :serie="serie" />
+          <Collection v-for="element in movies" :key="element.id" :element="element" />
+          <Collection v-for="element in series" :key="element.id" :element="element" />
         </ul>
       </div>
     </main>
