@@ -19,7 +19,11 @@
       },
       data() {
         return {
-          store
+          store,
+          flags: {
+          it: '/img/it.png',
+          en: '/img/en.png'
+        }
         }
       },
       computed: {
@@ -28,6 +32,9 @@
         },
         series(){
             return this.store.series
+        },
+        flag(){
+            return this.flags[this.element.original_language]                      
         }
         
       } 
