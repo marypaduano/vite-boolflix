@@ -2,8 +2,7 @@
     <main>
       <div class="container">
         <ul class="main-content">
-          <Collection v-for="element in movies" :key="element.id" :element="element" />
-          <Collection v-for="element in series" :key="element.id" :element="element" />
+          <Collection v-for="element in items" :key="element.id" :item="element" />
         </ul>
       </div>
     </main>
@@ -21,25 +20,35 @@
         return {
           store,
           flags: {
-          it: '/img/it.png',
-          en: '/img/en.png'
+          it: '/it.png',
+          en: '/en.png'
         }
         }
       },
       computed: {
-        movies() {
-          return this.store.movies
-        },
-        series(){
-            return this.store.series
-        },
-        flag(){
-            return this.flags[this.element.original_language]                      
-        }
-        
-      } 
+        items() {
+        const { movies , series } = this.store
+        const items = [...movies,...series]
+        return items.map((item) => {
+          return {
+            title: item.title ? item.title : item.name,
+            originalTitle: item.original_title ? item.original_title : item.original_name,
+            convertedStars: this.convertInStar(item.vote_average),
+            flag: this.flags[item.original_language],
+            src: item.poster_path ? 'https://image.tmdb.org/t/p/w342'+ item.poster_path : '/not-img.jpg',
+          }
+        })
+      }
+    },
+    methods: {
+      convertInStar(vote) {
+        return Math.round( vote / 2 )
+      }
     }
-  </script>
+  }
+
+</script>
+
   
   <style lang="scss" scoped>
   .main-content {

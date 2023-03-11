@@ -1,46 +1,53 @@
 <template>
     <li class="result">
-        <h2>{{ element.title ? element.title : element.name }}</h2>
-        <h3>{{ element.original_title ? element.original_title : element.original_name }}</h3>
-        <img v-if="element.flag" :src="element.flag" width="30" alt="">
-        <p v-else>{{ element.original_language }}</p>
-        <p>{{ element.vote_average }}</p>
+        <img class="image" :src="item.src" alt="image">
+        <h2>{{ item.title }}</h2>
+        <h3>{{ item.original_title }}</h3>
+        <img class="flag" v-if="item.flag" :src="item.flag" width="30" alt="">
+        <span v-else>{{ item.original_language }}</span>
+        <span>{{ item.convertedStars }}</span>
         <ul class="vote">
-            <li>
-                <font-awesome-icon icon="fa-solid fa-star" />
-            </li>
-            <li>
-                <font-awesome-icon icon="fa-regular fa-star" />
+            <li v-for="num in 5" :key="num">
+                <font-awesome-icon v-if="num <= item.convertedStars" icon="fa-solid fa-star" />
+                <font-awesome-icon v-else icon="fa-regular fa-star" />
             </li>
         </ul>
-        
-        
-        
     </li>
 </template>
   
 <script>
 export default {
     props: {
-        element: {
+        item: {
             type: Object,
             required: true
         }
-
     },
-    
+
 }
 </script>
   
 <style lang="scss" scoped>
 .result {
-    border: 1px solid black;
-    padding: 10px;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+    padding: 5px;
+    background-color: rgba(156, 155, 155, 0.756);
+
+    .image {
+        width: 100%;
+        object-fit: cover;
+        object-position: center;
+    }
 }
-.vote{
+
+.flag{
+    width: 32px;
+    padding: 20px 0;
+}
+
+.vote {
     display: flex;
 }
 </style>
